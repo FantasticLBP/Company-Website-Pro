@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>杭州北望生物技术有限公司信息管理系统</title>
+    <meta name="author" content="Binpeng Liu "/>
+    <meta name="description" content="杭州北望生物技术有限公司是一家集新药研发和新药研究技术服务、生物试剂开发与销售、食品药品相关试剂研发和销售为一体的高科技公司。">
+    <meta name="Keywords" content="杭州北望、响应式布局、信息管理系统、跨平台、iphone/ipad/mac..."/>
+    <meta name="author" content="杭城小刘"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!--引入基本css样式-->
+    <link href="admin/assets/css/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="admin/assets/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="admin/assets/css/select2.css"/>
+    <!--主框架style-->
+    <link rel="stylesheet" href="admin/assets/css/ace.min.css"/>
+    <link rel="stylesheet" href="admin/assets/css/ace-rtl.min.css"/>
+
+    <link rel="stylesheet" href="style/css/sweetalert.css"/>
+    <link rel="stylesheet" href="style/css/sweet-alert.css"/>
+</head>
+<body class="login-layout">
+<div class="main-container">
+    <div class="main-content">
+        <div class="row">
+            <div class="col-xm-10 col-sm-10 col-md-10 col-sm-offset-1">
+                <div class="login-container">
+                    <div class="center">
+                        <h1>
+                            <i class="icon-leaf green"></i>
+                            <span class="red">杭州北望科技有限公司</span>
+                            <span class="white"></span>
+                        </h1>
+                    </div>
+
+                    <div class="space-6"></div>
+
+                    <div class="position-relative">
+
+
+                        <div id="resetPassword-box" class="login-box widget-box no-border">
+                            <div class="widget-body">
+                                <div class="widget-main">
+                                    <h4 class="header blue lighter bigger">
+                                        <i class="icon-coffee green"></i>
+                                        请重置密码
+                                    </h4>
+
+                                    <div class="space-6"></div>
+                                    <!--重置密码密码表单-->
+                                    <form action="controller/Account.php?action=reset" autocomplete="on"
+                                          method="post">
+                                        <fieldset>
+
+                                            <label class="block clearfix">
+														<span class="block input-icon input-icon-right">
+		<input type="text" id="email" name="email" class="form-control" placeholder="邮箱" required="required"/>
+															<i class="icon-user"></i>
+														</span>
+                                            </label>
+
+
+                                            <label class="block clearfix">
+														<span class="block input-icon input-icon-right">
+		<input type="password" id="resetPassword" name="resetPassword" class="form-control" placeholder="请输入密码"
+               required="required"/>
+															<i class="icon-lock"></i>
+														</span>
+                                            </label>
+
+                                            <label class="block clearfix">
+														<span class="block input-icon input-icon-right">
+	<input type="password" id="resetVerPassword" name="resetVerPassword" class="form-control" placeholder="请再次输入密码"
+           required="required"/>
+															<i class="icon-lock"></i>
+														</span>
+                                            </label>
+
+                                            <label class="block clearfix">
+														<span class="block input-icon input-icon-right">
+                                            <input type="text" id="notice" class="form-control hidden" readonly=""/>
+
+														</span>
+                                            </label>
+
+
+                                            <div class="clearfix">
+                                                <input type="submit" value="请确认"
+                                                       class="width-35 pull-right btn btn-sm btn-primary"/>
+
+                                            </div>
+
+                                            <div class="space-4"></div>
+                                        </fieldset>
+                                    </form>
+
+
+                                </div><!-- /widget-main -->
+                            </div><!-- /widget-body -->
+                        </div><!-- /resetPassword-box -->
+
+
+                        <div id="forgot-box" class="forgot-box widget-box no-border">
+                            <div class="widget-body">
+                                <div class="widget-main">
+                                    <h4 class="header red lighter bigger">
+                                        <i class="icon-key"></i>
+                                        密码找回
+                                    </h4>
+
+                                    <div class="space-6"></div>
+                                    <p>
+                                        输入你的邮箱来接收密码
+                                    </p>
+
+                                    <form action="controller/Account.php?action=seekPassword" autocomplete="true"
+                                              method="post">
+                                        <fieldset>
+                                            <label class="block clearfix">
+														<span class="block input-icon input-icon-right">
+					<input type="email" name="seekEmail" id="seekEmail" class="form-control"
+                           placeholder="输入注册邮箱" required="required"/>
+															<i class="icon-envelope"></i>
+														</span>
+                                            </label>
+                                            <label class="block clearfix">
+														<span class="block input-icon input-icon-right">
+					<p id="seekEmailResult" style="color:#F33"></p>
+
+														</span>
+                                            </label>
+
+                                            <div class="clearfix">
+                                                <button id="seekPassword"
+                                                        class="width-35 pull-right btn btn-sm btn-danger">提交
+                                                </button>
+                                            </div>
+                                        </fieldset>
+                                    </form>
+
+
+                                    <!--一段ajax来检测该邮箱是否被注册-->
+
+
+                                </div><!-- /widget-main -->
+
+                                <div class="toolbar center">
+                                    <a href="#" onclick="show_box('login-box'); return false;" class="back-to-login-link">
+                                        登陆
+                                        <i class="icon-arrow-right"></i>
+                                    </a>
+                                </div>
+                            </div><!-- /widget-body -->
+                        </div><!-- /forgot-box -->
+
+
+                        <div id="signup-box" class="signup-box widget-box no-border">
+                            <div class="widget-body">
+                                <div class="widget-main">
+                                    <h4 class="header green lighter bigger">
+                                        <i class="icon-group blue"></i>
+                                        新账户注册
+                                    </h4>
+
+                                    <div class="space-6"></div>
+                                    <p>输入你的详细信息: </p>
+                                    <!--注册表单-->
+                                    <form autocomplete="on">
+                                        <fieldset>
+
+                                            <label class="block clearfix">
+														<span class="block input-icon input-icon-right">
+	<input type="text" id="username" name="username" required="required" class="form-control" placeholder="用户名"/>
+															<i class="icon-user"></i>
+														</span>
+                                            </label>
+                                            <span class="block input-icon input-icon-right"><p id="userResult"
+                                                                                               style="color:#F33"></p></span>
+
+
+                                            <label class="block clearfix">
+														<span class="block input-icon input-icon-right">
+	<input type="email" id="registerEmail" name="registerEmail" required="required" class="form-control" placeholder="邮箱"/>
+															<i class="icon-envelope"></i>
+														</span>
+                                            </label>
+                                            <span class="block input-icon input-icon-right"><p id="emailResult"
+                                                                                               style="color:#F33"></p></span>
+
+                                            <label class="block clearfix">
+														<span class="block input-icon input-icon-right">
+<input type="tel" id="telephone" name="telephone" required class="form-control" placeholder="手机号"
+       required="required"/>
+															<i class="icon-phone"></i>
+														</span>
+                                            </label>
+
+                                            <label class="block clearfix">
+														<span class="block input-icon input-icon-right">
+<input type="text" id="address" name="address" class="form-control" placeholder="收获地址"/>
+															<i class="icon-home"></i>
+														</span>
+                                            </label>
+
+
+                                            <label class="block clearfix">
+														<span class="block input-icon input-icon-right">
+<input type="password" id="password" name="password" required class="form-control" placeholder="密码"
+       required="required"/>
+															<i class="icon-lock"></i>
+														</span>
+                                            </label>
+
+                                            <label class="block">
+                                                <input type="checkbox" class="ace"/>
+                                                <span class="lbl">
+                                                    接受
+                                                    <a href="#">用户协议</a>
+                                                </span>
+                                            </label>
+
+
+                                            <div class="clearfix">
+                                                <button type="reset" class="width-30 pull-left btn btn-sm">
+                                                    <i class="icon-refresh"></i>
+                                                    重置
+                                                </button>
+                                                <input type="button" value="注册" id="register"
+                                                       class="width-65 pull-right btn btn-sm btn-success"/>
+                                            </div>
+                                        </fieldset>
+                                    </form>
+                                </div>
+
+                                <div class="toolbar center">
+                                    <a href="#" onclick="show_box('login-box'); return false;"
+                                       class="back-to-login-link">
+                                        <i class="icon-arrow-left"></i>
+                                        返回登录
+                                    </a>
+                                </div>
+                            </div><!-- /widget-body -->
+                        </div><!-- /signup-box -->
+                    </div><!-- /position-relative -->
+                </div>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div>
+</div><!-- /.main-container -->
+
+<script type="text/javascript">
+    window.jQuery || document.write("<script src='admin/assets/js/jquery-2.0.3.min.js'>" + "<" + "/script>");
+</script>
+
+<script type="text/javascript">
+    if ("ontouchend" in document) document.write("<script src='admin/assets/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
+</script>
+<script type="text/javascript" src="style/js/sweetalert.min.js"></script>
+
+<script type="text/javascript">
+
+    function show_box(id) {
+        jQuery('.widget-box.visible').removeClass('visible');
+        jQuery('#' + id).addClass('visible');
+    }
+
+    //获取url参数
+    function getQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null)
+            return decodeURIComponent(r[2]);
+        return null;
+    }
+
+
+    if(getQueryString("show") == "resetPassword-box"){
+        $("#email").val(getQueryString("email"));
+    }
+    show_box(getQueryString("show"));
+
+    $("#resetPassword").on("blur",function () {
+        if($(this).val() == ""){
+            swal("密码不能为空");
+            return ;
+        }
+    });
+
+
+    $("#resetVerPassword").on("blur",function () {
+       if($("#resetPassword").val() == ""){
+            swal("密码不能为空");
+            return ;
+       }
+       if($("#resetPassword").val() != $("#resetVerPassword").val()){
+           swal("2次密码不一致");
+           return ;
+       }
+    });
+
+    $("#username").on("blur", function () {
+        if ($(this).val() != "") {
+            $.ajax({
+                dataType: "json",
+                type: "get",
+                url: "controller/Account.php?action=checkUserName&username=" + $(this).val(),
+                success: function (data) {
+                    if (data.code == 200) {
+                        var datas = data.data;
+                        if (datas.length <= 0) {
+                            return;
+                        }
+                        $("#userResult").html("<a href='index.php'>该账号已存在，请登陆</a>或换个账号注册");
+                    }
+                },
+                error: function (code, message, data) {
+                    alert("发生错误：" + message);
+                }
+            });
+        }
+    });
+
+    $("#email").on("blur", function () {
+        if ($(this).val() != "") {
+            $.ajax({
+                dataType: "json",
+                type: "get",
+                url: "controller/Account.php?action=checkEmail&email=" + $(this).val(),
+                success: function (data) {
+                    if (data.code == 200) {
+                        var datas = data.data;
+                        if (datas.length <= 0) {
+                            return;
+                        }
+                        $("#emailResult").html("<a href='index.php'>该邮箱已存在，请登陆</a>或换个邮箱注册");
+                    }
+                },
+                error: function (code, message, data) {
+                    alert("发生错误：" + message);
+                }
+            });
+        }
+    });
+
+    $("#seekEmail").on("blur", function () {
+        $("#seekEmailResult").html("");
+        if ($(this).val() != "") {
+            $.ajax({
+                dataType: "json",
+                type: "get",
+                url: "controller/Account.php?action=checkEmail&email=" + $(this).val(),
+                success: function (data) {
+                    if (data.code == 201) {
+                        $("#seekEmailResult").html(data.message);
+                    }
+                },
+                error: function (code, message, data) {
+                    alert("发生错误：" + message);
+                }
+            });
+        }
+    });
+
+    $("#register").click(function () {
+        var data = {
+            "username": $("#username").val(),
+            "password": $("#password").val(),
+            "telephone": $("#telephone").val(),
+            "email": $("#registerEmail").val(),
+            "address": $("#address").val()
+        };
+        $.ajax({
+            dataType: "json",
+            type: "POST",
+            data: data,
+            url: "controller/Account.php?action=register",
+            success: function (data) {
+                if (data.code == 200) {
+                    setTimeout(function () {
+                        swal(data.message);
+                        setTimeout(function () {
+                            window.history.back();
+                        }, 2000);
+                    }, 1000);
+                } else {
+                    setTimeout(function () {
+                        swal(data.message);
+                        setTimeout(function () {
+                            window.location.reload();
+                        }, 1000);
+                    }, 1000);
+                }
+            },
+            error: function (code, message, data) {
+                console.log("发生错误" + message);
+            }
+        });
+    });
+
+</script>
+<div style="display:none"></div>
+</body>
+</html>
