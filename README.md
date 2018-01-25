@@ -2,11 +2,7 @@
 
 # Company-Website
 
-[![](https://img.shields.io/badge/release%20date-2018--01--25-lightgray.svg)](https://github.com/FantasticLBP/Company-Website) 
-
-[![Build status](https://img.shields.io/badge/building-passing-brightgreen.svg)](https://github.com/FantasticLBP/Company-Website) 
-
-[![Gitter](https://img.shields.io/badge/chat-weibo-orange.svg)](https://weibo.com/3194053975/profile?rightmod=1&wvr=6&mod=personinfo)
+[![](https://img.shields.io/badge/release%20date-2018--01--25-lightgray.svg)](https://github.com/FantasticLBP/Company-Website) [![Build status](https://img.shields.io/badge/building-passing-brightgreen.svg)](https://github.com/FantasticLBP/Company-Website) [![Gitter](https://img.shields.io/badge/chat-weibo-orange.svg)](https://weibo.com/3194053975/profile?rightmod=1&wvr=6&mod=personinfo)
 
 企业官方网站Pro版
 
@@ -17,15 +13,14 @@
 
 ## 特色
 
-- :gem: **Neat Design**: Follow [Ant Design specification](http://ant.design/)
-- :triangular_ruler: **Common Templates**: Typical templates for enterprise applications
-- :rocket: **State of The Art Development**: Newest development stack of React/dva/antd
-- :iphone: **Responsive**: Designed for varies of screen size
-- :art: **Themeing**: Customizable theme with simple config
-- :globe_with_meridians: **International**: Built-in i18n solution
-- :gear: **Best Practice**: Solid workflow make your code health
-- :1234: **Mock development**: Easy to use mock development solution
-- :white_check_mark: **UI Test**: Fly safely with unit test and e2e test
+- :gem: **响应式布局**: 使用了BootStarp作为UI基础
+- :triangular_ruler: **跨平台**: PHP作为后端开发语言
+- :rocket: **安全**: PDO、关键信息配合数据加密操作
+- :iphone: **响应式布局**: 使用了BootStarp作为UI基础
+- :art: **UI美观大方**: 自己设计的UI，简洁大方
+- :globe_with_meridians: **前后端分离**: 前后端分离，前端通过接口访问并处理数据
+- :gear: **REST风格的API**: 自己基于PDO封装的数据库操作类以及数据处理类，方便滴制作出REST风格的API
+
 
 ## Templates
 
