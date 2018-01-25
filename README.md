@@ -6,23 +6,16 @@
 
 [![Build status](https://img.shields.io/badge/building-passing-brightgreen.svg)](https://github.com/FantasticLBP/Company-Website) 
 
+[![Gitter](https://img.shields.io/badge/chat-weibo-orange.svg)](https://weibo.com/3194053975/profile?rightmod=1&wvr=6&mod=personinfo)
 
-
-An out-of-box UI solution for enterprise applications as a React boilerplate.
+企业官方网站Pro版
 
 ![](https://github.com/FantasticLBP/Company-Website/raw/master/snapshot/1.png)
 
-- Preview: http://preview.pro.ant.design
-- Home Page: http://pro.ant.design
-- Documentation: http://pro.ant.design/docs/getting-started
-- ChangeLog: http://pro.ant.design/docs/changelog
-- FAQ: http://pro.ant.design/docs/faq
 
-## Translation Recruitment :loudspeaker:
 
-We need your help: https://github.com/ant-design/ant-design-pro/issues/120
 
-## Features
+## 特色
 
 - :gem: **Neat Design**: Follow [Ant Design specification](http://ant.design/)
 - :triangular_ruler: **Common Templates**: Typical templates for enterprise applications
