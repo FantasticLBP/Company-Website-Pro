@@ -6,7 +6,7 @@
 
 An out-of-box UI solution for enterprise applications as a React boilerplate.
 
-![](https://gw.alipayobjects.com/zos/rmsportal/xEdBqwSzvoSapmnSnYjU.png)
+![](https://github.com/FantasticLBP/Company-Website/raw/master/snapshot/1.png)
 
 - Preview: http://preview.pro.ant.design
 - Home Page: http://pro.ant.design
