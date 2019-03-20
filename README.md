@@ -247,9 +247,7 @@ class Response {
 ```
 
 ## 演示视频
-[演示视频](http://v.youku.com/v_show/id_XMzM1MDUxODA4OA==.html?spm=a2h3j.8428770.3416059.1)
-
-
+[演示视频](https://weibo.com/tv/v/HlPeb7gr8?fid=1034:4352016257099164)
 
 ## 联系
 
