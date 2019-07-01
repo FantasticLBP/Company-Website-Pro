@@ -14,30 +14,26 @@ require_once 'Response.php';
 require_once '../Utils/fileHandler/upload.class.php';
 require_once '../Utils/fileHandler/upload.func.php';
 
-
 class MileStone
 {
     private $tableName = "milestone";
     private $type = "";
     private $editId = "";
-    private  $content = "";
-
-
+    private $content = "";
 
     protected static $_instance = null;
 
-    protected function  __construct()
+    protected function __construct()
     {
 
     }
 
-    protected function  __clone()
+    protected function __clone()
     {
         // TODO: Implement __clone() method.
     }
 
-
-    public static function  getInstance()
+    public static function getInstance()
     {
         if (self::$_instance === null) {
             self::$_instance = new self();
@@ -45,30 +41,29 @@ class MileStone
         return self::$_instance;
     }
 
-    function getMileStone()
+    public function getMileStone()
     {
 
-        $this->type = isset($_REQUEST["type"])?$_REQUEST["type"]:"";
-        $this->editId = isset($_REQUEST["editId"])?$_REQUEST["editId"]:"";
-        $this->content = isset($_REQUEST["content"])?$_REQUEST["content"]:"";
-
+        $this->type = isset($_REQUEST["type"]) ? $_REQUEST["type"] : "";
+        $this->editId = isset($_REQUEST["editId"]) ? $_REQUEST["editId"] : "";
+        $this->content = isset($_REQUEST["content"]) ? $_REQUEST["content"] : "";
 
         $mysqlPdo = new PdoMySQL();
         if ($this->type == "detail") {
-            $allrows = $mysqlPdo->find($this->tableName,"","","","","time");
+            $allrows = $mysqlPdo->find($this->tableName, "", "", "", "", "time");
             Response::show(200, '公司里程碑信息返回成功', $allrows, 'json');
         } else if ($this->editId != "" && $this->type == "one") {
-            $allrows = $mysqlPdo->find($this->tableName, "id=$this->editId","","","","time");
+            $allrows = $mysqlPdo->find($this->tableName, "id=$this->editId", "", "", "", "time");
             Response::show(200, '公司里程碑信息返回成功', $allrows, 'json');
-        } else if($this->editId != "" && $this->type == "delete"){
+        } else if ($this->editId != "" && $this->type == "delete") {
             $allrows = $mysqlPdo->delete($this->tableName, "id=$this->editId");
-            if($allrows){
+            if ($allrows) {
                 Response::show(200, '该程碑删除成功', $allrows, 'json');
-            }else{
+            } else {
                 Response::show(201, '该程碑删除失败', $allrows, 'json');
             }
 
-        }else if ($this->editId !== "" && isset($this->editId)) {
+        } else if ($this->editId !== "" && isset($this->editId)) {
             //修改
             //判断修改的时候是否上传了新图片，如果上传了新图片则全部更新table中的记录数据；如果没有上传新图片则只需要更新table中基本数据信息
             $whetherPostImage = false;
@@ -109,7 +104,7 @@ class MileStone
                     echo '<script type="text/javascript">window.location.href = "../admin/development.html?success=1&type=update";</script>';
                 }
             }
-        }else{
+        } else {
             //判断图片：如果上传的图片数组里面是不为空的图片则进行图片保存函数。
             foreach ($_FILES as $fileInfo) {
                 if ($fileInfo["name"] != "") {
@@ -132,4 +127,3 @@ class MileStone
 
 $milestone = MileStone::getInstance();
 $milestone->getMileStone();
-?>

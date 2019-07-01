@@ -14,7 +14,6 @@ require_once 'Response.php';
 require_once '../Utils/fileHandler/upload.class.php';
 require_once '../Utils/fileHandler/upload.func.php';
 
-
 class Boughts
 {
     private $tableName = "order";
@@ -22,21 +21,19 @@ class Boughts
     private $name = "";
     private $status = "";
 
-
     protected static $_instance = null;
 
-    protected function  __construct()
+    protected function __construct()
     {
 
     }
 
-    protected function  __clone()
+    protected function __clone()
     {
         // TODO: Implement __clone() method.
     }
 
-
-    public function  getInstance()
+    public function getInstance()
     {
         if (self::$_instance === null) {
             self::$_instance = new self();
@@ -44,25 +41,25 @@ class Boughts
         return self::$_instance;
     }
 
-    function getBoughts(){
+    public function getBoughts()
+    {
 
-        self.$this->identifier = $_REQUEST['identifier'];
-        self.$this->name = $_REQUEST["name"];
-        self.$this->product = $_REQUEST['product'];
-        self.$this->status = $_REQUEST['status'];
-
+        self . $this->identifier = $_REQUEST['identifier'];
+        self . $this->name = $_REQUEST["name"];
+        self . $this->product = $_REQUEST['product'];
+        self . $this->status = $_REQUEST['status'];
 
         $mysqlPdo = new PdoMySQL();
 
-        $userRow = $mysqlPdo->find("user","username='{$this->name}' and identifier='{$this->identifier}'");
+        $userRow = $mysqlPdo->find("user", "username='{$this->name}' and identifier='{$this->identifier}'");
         $userid = $userRow[0]["id"];
 
-        $boughtRow = $mysqlPdo->find($this->tableName,"userid='{$userid}' and status={$this->status}");
+        $boughtRow = $mysqlPdo->find($this->tableName, "userid='{$userid}' and status={$this->status}");
 
-        if(count($boughtRow)  > 0){
-            Response::show(200,"购物信息返回成功",$boughtRow);
-        }else{
-            Response::show(200,"暂无购物信息");
+        if (count($boughtRow) > 0) {
+            Response::show(200, "购物信息返回成功", $boughtRow);
+        } else {
+            Response::show(200, "暂无购物信息");
         }
 
     }
@@ -70,4 +67,3 @@ class Boughts
 
 $manager = Boughts::getInstance();
 $manager->getBoughts();
-?>

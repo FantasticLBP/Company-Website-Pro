@@ -11,27 +11,24 @@ require_once '../model/PdoMySQL.class.php';
 require_once '../model/config.php';
 require_once 'Response.php';
 
-
-
 class TechService
 {
     private $techServiceTableName = "techServices";
-    private  $techKindsTableName = "techKinds";
+    private $techKindsTableName = "techKinds";
 
-    private  $serviceId = "";
+    private $serviceId = "";
 
     protected static $_instance = null;
 
-    protected function  __construct()
+    protected function __construct()
     {
 
     }
 
-    protected function  __clone()
+    protected function __clone()
     {
         // TODO: Implement __clone() method.
     }
-
 
     public static function getInstance()
     {
@@ -41,21 +38,17 @@ class TechService
         return self::$_instance;
     }
 
-    function operateService()
+    public function operateService()
     {
-        self.$this->serviceId = $_REQUEST["serviceId"];
+        self . $this->serviceId = $_REQUEST["serviceId"];
 
         $mysqlPdo = new PdoMySQL();
-        $allrows = $mysqlPdo->find($this->tech,"moduleId=$this->moduleId");
+        $allrows = $mysqlPdo->find($this->tech, "moduleId=$this->moduleId");
 
         Response::show(200, '技术支持与服务模块信息返回成功', $allrows, 'json');
-
-
 
     }
 }
 
 $techService = TechService::getInstance();
 $techService->operateService();
-?>
-

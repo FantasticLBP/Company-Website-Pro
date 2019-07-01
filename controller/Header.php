@@ -28,11 +28,10 @@ class Header
         return self::$_instance;
     }
 
-    function headerGenerate($col, $row)
+    public function headerGenerate($col, $row)
     {
         $this->mysqlPdo = new PdoMySQL();
         $allrows = $this->mysqlPdo->find("base");
-
 
         $data = $allrows[0];
         echo '<div class="header-top">
@@ -133,7 +132,7 @@ class Header
                                             </tr>
                                             </thead>
                                             <tbody id="booked">
-                                            
+
                                             </tbody>
                                         </table>
                                         <div class="panel-body text-right" id="cart">
@@ -154,7 +153,7 @@ class Header
             </div>
         </div>
     </div>
-    
+
     <script src="style/js/Helper/utils/util.js"></script>
                                     <script src="style/js/Helper/front/index.js"></script>
         <header class="header fixed clearfix">
@@ -296,5 +295,3 @@ class Header
     }
 
 }
-
-?>

@@ -17,8 +17,7 @@
                     saveToLocalStorage("Adminid", new Base64().encode(datas.identifier));
                     saveToLocalStorage("Adminusername", new Base64().encode(datas.username));
                     saveToLocalStorage("AdminID", new Base64().encode(datas.id));
-                    window.location.href  = "main.php";
-
+                    window.location.href = "main.php";
                 } else {
                     emptyTheLocalStorage();
                     swal(data.message);
@@ -34,18 +33,18 @@
 
     $("#loginButton").click(function () {
 
-        if ($("#username").val() == "") {
+        if ($("#loginUsername").val() == "") {
             swal("账号不能为空");
             return;
         }
-        if ($("#password").val() == "") {
+        if ($("#loginPassword").val() == "") {
             swal("密码不能为空");
             return;
         }
         $.ajax({
             dataType: "json",
             type: "get",
-            url: "../controller/doAction.php?operation=login&username=" + $("#username").val() + "&password=" + $("#password").val(),
+            url: "../controller/doAction.php?operation=login&username=" + $("#loginUsername").val() + "&password=" + $("#loginPassword").val(),
             success: function (data) {
                 if (data.code == 200) {
                     var datas = data.data;
@@ -64,7 +63,7 @@
     });
 
 
-    $("#seekPassword").click(function(){
+    $("#seekPassword").click(function () {
 
         if ($("#seekEmail").val() == "") {
             swal("不能为空");
@@ -78,7 +77,7 @@
             success: function (data) {
                 if (data.code == 200) {
                     var datas = data.data;
-                   swal("密码找回邮件发送成功");
+                    swal("密码找回邮件发送成功");
 
                 } else {
                     swal(data.message);

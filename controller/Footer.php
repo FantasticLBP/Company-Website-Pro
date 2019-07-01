@@ -1,29 +1,33 @@
 <?php
 define("CRO_WEB_HZ", dirname(__FILE__));
-set_include_path(".".PATH_SEPARATOR.CRO_WEB_HZ."model/".get_include_path());
+set_include_path("." . PATH_SEPARATOR . CRO_WEB_HZ . "model/" . get_include_path());
 
 require_once "model/PdoMySQL.class.php";
 require_once "model/config.php";
 require_once "Response.php";
 
-class Footer{
+class Footer
+{
 
     protected static $_instance = null;
-    private  $mysqlPdo;
-    protected function __construct(){
+    private $mysqlPdo;
+    protected function __construct()
+    {
         //disallow new instance
     }
-    protected function __clone(){
+    protected function __clone()
+    {
         //disallow clone
     }
-    public static function getInstance(){
+    public static function getInstance()
+    {
         if (self::$_instance === null) {
             self::$_instance = new self();
         }
         return self::$_instance;
     }
 
-    function footerGenerate()
+    public function footerGenerate()
     {
         $this->mysqlPdo = new PdoMySQL();
         $allrows = $this->mysqlPdo->find("base");
@@ -125,10 +129,9 @@ class Footer{
 				<!-- .subfooter end -->
 			</footer>';
 
-        }
-
     }
+
+}
 
 $footer = Footer::getInstance();
 $footer->footerGenerate();
-?>

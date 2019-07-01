@@ -14,7 +14,6 @@ require_once 'Response.php';
 require_once '../Utils/fileHandler/upload.class.php';
 require_once '../Utils/fileHandler/upload.func.php';
 
-
 class Organization
 {
     private $tableName = "organization";
@@ -23,18 +22,17 @@ class Organization
 
     protected static $_instance = null;
 
-    protected function  __construct()
+    protected function __construct()
     {
 
     }
 
-    protected function  __clone()
+    protected function __clone()
     {
         // TODO: Implement __clone() method.
     }
 
-
-    public function  getInstance()
+    public function getInstance()
     {
         if (self::$_instance === null) {
             self::$_instance = new self();
@@ -42,7 +40,7 @@ class Organization
         return self::$_instance;
     }
 
-    function getOrganization()
+    public function getOrganization()
     {
 
         self . $this->type = $_REQUEST["type"];
@@ -52,7 +50,7 @@ class Organization
         if ($this->type == "detail") {
             $allrows = $mysqlPdo->find($this->tableName);
             Response::show(200, '组织结构信息返回成功', $allrows, 'json');
-        }else if ($this->editId !== "" && isset($this->editId)) {
+        } else if ($this->editId !== "" && isset($this->editId)) {
             //修改
             //判断修改的时候是否上传了新图片，如果上传了新图片则全部更新table中的记录数据；如果没有上传新图片则只需要更新table中基本数据信息
             $whetherPostImage = false;
@@ -82,7 +80,7 @@ class Organization
                 echo '<script type="text/javascript">window.location.href = "../admin/orgaization.php?success=1&type=update";</script>';
             }
 
-        }else{
+        } else {
             foreach ($_FILES as $fileInfo) {
                 if ($fileInfo["name"] != "") {
                     $files[] = uploadFile($fileInfo, "../style/images");
@@ -104,4 +102,3 @@ class Organization
 
 $organization = Organization::getInstance();
 $organization->getOrganization();
-?>

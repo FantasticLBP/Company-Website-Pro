@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.6
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: 2017-08-20 23:32:55
--- 服务器版本： 5.6.35
--- PHP Version: 5.6.30
+-- Generation Time: Jun 19, 2019 at 02:20 PM
+-- Server version: 5.7.23
+-- PHP Version: 7.2.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- 表的结构 `admin`
+-- Table structure for table `admin`
 --
 
 CREATE TABLE `admin` (
@@ -25,20 +25,22 @@ CREATE TABLE `admin` (
   `username` varchar(40) COLLATE utf8_unicode_ci NOT NULL COMMENT '用户名',
   `password` varchar(32) COLLATE utf8_unicode_ci NOT NULL COMMENT '密码',
   `email` varchar(40) COLLATE utf8_unicode_ci NOT NULL COMMENT '邮箱',
-  `operation` int(10) NOT NULL COMMENT '权限，1-全部权限，2-查询权限，3-修改权限，删除权限，查询权限'
+  `operation` int(10) NOT NULL COMMENT '权限，1-全部权限，2-查询权限，3-修改权限，删除权限，查询权限',
+  `time` varchar(20) COLLATE utf8_unicode_ci NOT NULL COMMENT '时间戳',
+  `identifier` varchar(32) COLLATE utf8_unicode_ci NOT NULL COMMENT '有效性标识'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- 转存表中的数据 `admin`
+-- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`id`, `username`, `password`, `email`, `operation`) VALUES
-(1, 'admin', '21218cca77804d2ba1922c33e0151105', '1611274445@qq.com', 1);
+INSERT INTO `admin` (`id`, `username`, `password`, `email`, `operation`, `time`, `identifier`) VALUES
+(1, 'admin', '21218cca77804d2ba1922c33e0151105', '1611274445@qq.com', 1, '1561524954', '7b4fcfd63aab0546bc5ef571932fded4');
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `base`
+-- Table structure for table `base`
 --
 
 CREATE TABLE `base` (
@@ -58,7 +60,7 @@ CREATE TABLE `base` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- 转存表中的数据 `base`
+-- Dumping data for table `base`
 --
 
 INSERT INTO `base` (`id`, `webtitle`, `companyIntroduce`, `address`, `administratorTel`, `enzymeTel`, `plateTel`, `fax`, `adminiatratorEmail`, `MarketDepartmentEmail`, `webLogo`, `wechatBarcode`, `time`) VALUES
@@ -67,7 +69,7 @@ INSERT INTO `base` (`id`, `webtitle`, `companyIntroduce`, `address`, `administra
 -- --------------------------------------------------------
 
 --
--- 表的结构 `bigKind`
+-- Table structure for table `bigKind`
 --
 
 CREATE TABLE `bigKind` (
@@ -76,7 +78,7 @@ CREATE TABLE `bigKind` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- 转存表中的数据 `bigKind`
+-- Dumping data for table `bigKind`
 --
 
 INSERT INTO `bigKind` (`id`, `kindName`) VALUES
@@ -93,7 +95,7 @@ INSERT INTO `bigKind` (`id`, `kindName`) VALUES
 -- --------------------------------------------------------
 
 --
--- 表的结构 `birthday`
+-- Table structure for table `birthday`
 --
 
 CREATE TABLE `birthday` (
@@ -104,7 +106,7 @@ CREATE TABLE `birthday` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- 转存表中的数据 `birthday`
+-- Dumping data for table `birthday`
 --
 
 INSERT INTO `birthday` (`id`, `content`, `time`, `image`) VALUES
@@ -113,7 +115,7 @@ INSERT INTO `birthday` (`id`, `content`, `time`, `image`) VALUES
 -- --------------------------------------------------------
 
 --
--- 表的结构 `comment`
+-- Table structure for table `comment`
 --
 
 CREATE TABLE `comment` (
@@ -126,7 +128,7 @@ CREATE TABLE `comment` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- 转存表中的数据 `comment`
+-- Dumping data for table `comment`
 --
 
 INSERT INTO `comment` (`id`, `username`, `properLevel`, `content`, `productId`, `time`) VALUES
@@ -138,7 +140,7 @@ INSERT INTO `comment` (`id`, `username`, `properLevel`, `content`, `productId`, 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `companyIntr`
+-- Table structure for table `companyIntr`
 --
 
 CREATE TABLE `companyIntr` (
@@ -152,7 +154,7 @@ CREATE TABLE `companyIntr` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- 转存表中的数据 `companyIntr`
+-- Dumping data for table `companyIntr`
 --
 
 INSERT INTO `companyIntr` (`id`, `description1`, `description2`, `image1`, `image2`, `image3`, `image4`) VALUES
@@ -161,7 +163,7 @@ INSERT INTO `companyIntr` (`id`, `description1`, `description2`, `image1`, `imag
 -- --------------------------------------------------------
 
 --
--- 表的结构 `companyPhilosophy`
+-- Table structure for table `companyPhilosophy`
 --
 
 CREATE TABLE `companyPhilosophy` (
@@ -171,7 +173,7 @@ CREATE TABLE `companyPhilosophy` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- 转存表中的数据 `companyPhilosophy`
+-- Dumping data for table `companyPhilosophy`
 --
 
 INSERT INTO `companyPhilosophy` (`id`, `philosophy`, `goal`) VALUES
@@ -181,7 +183,7 @@ INSERT INTO `companyPhilosophy` (`id`, `philosophy`, `goal`) VALUES
 -- --------------------------------------------------------
 
 --
--- 表的结构 `contratcs`
+-- Table structure for table `contratcs`
 --
 
 CREATE TABLE `contratcs` (
@@ -197,7 +199,7 @@ CREATE TABLE `contratcs` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- 转存表中的数据 `contratcs`
+-- Dumping data for table `contratcs`
 --
 
 INSERT INTO `contratcs` (`id`, `title`, `content`, `image1`, `image2`, `image3`, `time`, `author`, `pageview`) VALUES
@@ -207,7 +209,7 @@ INSERT INTO `contratcs` (`id`, `title`, `content`, `image1`, `image2`, `image3`,
 -- --------------------------------------------------------
 
 --
--- 表的结构 `employee`
+-- Table structure for table `employee`
 --
 
 CREATE TABLE `employee` (
@@ -220,7 +222,7 @@ CREATE TABLE `employee` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- 转存表中的数据 `employee`
+-- Dumping data for table `employee`
 --
 
 INSERT INTO `employee` (`id`, `job`, `place`, `vacancy`, `time`, `basecondition`) VALUES
@@ -230,7 +232,7 @@ INSERT INTO `employee` (`id`, `job`, `place`, `vacancy`, `time`, `basecondition`
 -- --------------------------------------------------------
 
 --
--- 表的结构 `encouragement`
+-- Table structure for table `encouragement`
 --
 
 CREATE TABLE `encouragement` (
@@ -241,7 +243,7 @@ CREATE TABLE `encouragement` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- 转存表中的数据 `encouragement`
+-- Dumping data for table `encouragement`
 --
 
 INSERT INTO `encouragement` (`id`, `content`, `time`, `image`) VALUES
@@ -250,7 +252,7 @@ INSERT INTO `encouragement` (`id`, `content`, `time`, `image`) VALUES
 -- --------------------------------------------------------
 
 --
--- 表的结构 `faq`
+-- Table structure for table `faq`
 --
 
 CREATE TABLE `faq` (
@@ -263,7 +265,7 @@ CREATE TABLE `faq` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- 转存表中的数据 `faq`
+-- Dumping data for table `faq`
 --
 
 INSERT INTO `faq` (`id`, `username`, `kind`, `email`, `content`, `time`) VALUES
@@ -272,7 +274,7 @@ INSERT INTO `faq` (`id`, `username`, `kind`, `email`, `content`, `time`) VALUES
 -- --------------------------------------------------------
 
 --
--- 表的结构 `faqquestion`
+-- Table structure for table `faqquestion`
 --
 
 CREATE TABLE `faqquestion` (
@@ -284,7 +286,7 @@ CREATE TABLE `faqquestion` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- 转存表中的数据 `faqquestion`
+-- Dumping data for table `faqquestion`
 --
 
 INSERT INTO `faqquestion` (`id`, `author`, `title`, `content`, `time`) VALUES
@@ -299,7 +301,7 @@ INSERT INTO `faqquestion` (`id`, `author`, `title`, `content`, `time`) VALUES
 -- --------------------------------------------------------
 
 --
--- 表的结构 `honor`
+-- Table structure for table `honor`
 --
 
 CREATE TABLE `honor` (
@@ -316,7 +318,7 @@ CREATE TABLE `honor` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- 转存表中的数据 `honor`
+-- Dumping data for table `honor`
 --
 
 INSERT INTO `honor` (`id`, `image1`, `image2`, `image3`, `image4`, `image5`, `image6`, `image7`, `image8`, `image9`) VALUES
@@ -325,7 +327,7 @@ INSERT INTO `honor` (`id`, `image1`, `image2`, `image3`, `image4`, `image5`, `im
 -- --------------------------------------------------------
 
 --
--- 表的结构 `manufacture`
+-- Table structure for table `manufacture`
 --
 
 CREATE TABLE `manufacture` (
@@ -337,17 +339,18 @@ CREATE TABLE `manufacture` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- 转存表中的数据 `manufacture`
+-- Dumping data for table `manufacture`
 --
 
 INSERT INTO `manufacture` (`id`, `title`, `content`, `requirement`, `time`) VALUES
 (1, '药品代加工服务', '只要您提供idea我们为您做好最棒的产品。', '<p style=\"margin-bottom: 20px; color: rgb(102, 102, 102); font-family: &quot;Open Sans&quot;, sans-serif; font-size: 15px;\">1、对产品已经有了idea；</p><p style=\"margin-bottom: 20px; color: rgb(102, 102, 102); font-family: &quot;Open Sans&quot;, sans-serif; font-size: 15px;\">2、有配方,只需要我们加工；</p>', '2017年06月02日'),
-(2, '代加工', '我们会为您提供最好的冻干产品', '棒棒的', '2017年06月02日');
+(2, '代加工', '我们会为您提供最好的冻干产品', '棒棒的', '2017年06月02日'),
+(3, '测试数据', '代加工', '<ul><li><b>但从呃呃哦饿我</b></li><li><b>哦而佛</b></li><li><b>发的染发</b></li><li><b>的我</b></li></ul>', '2019年06月19日');
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `message`
+-- Table structure for table `message`
 --
 
 CREATE TABLE `message` (
@@ -360,7 +363,7 @@ CREATE TABLE `message` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- 转存表中的数据 `message`
+-- Dumping data for table `message`
 --
 
 INSERT INTO `message` (`id`, `username`, `phone`, `email`, `content`, `time`) VALUES
@@ -371,7 +374,7 @@ INSERT INTO `message` (`id`, `username`, `phone`, `email`, `content`, `time`) VA
 -- --------------------------------------------------------
 
 --
--- 表的结构 `milestone`
+-- Table structure for table `milestone`
 --
 
 CREATE TABLE `milestone` (
@@ -383,7 +386,7 @@ CREATE TABLE `milestone` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- 转存表中的数据 `milestone`
+-- Dumping data for table `milestone`
 --
 
 INSERT INTO `milestone` (`id`, `image`, `content`, `time`, `publisher`) VALUES
@@ -395,7 +398,7 @@ INSERT INTO `milestone` (`id`, `image`, `content`, `time`, `publisher`) VALUES
 -- --------------------------------------------------------
 
 --
--- 表的结构 `news`
+-- Table structure for table `news`
 --
 
 CREATE TABLE `news` (
@@ -409,7 +412,7 @@ CREATE TABLE `news` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- 转存表中的数据 `news`
+-- Dumping data for table `news`
 --
 
 INSERT INTO `news` (`id`, `kindtype`, `title`, `content`, `time`, `pageview`, `author`) VALUES
@@ -424,7 +427,7 @@ INSERT INTO `news` (`id`, `kindtype`, `title`, `content`, `time`, `pageview`, `a
 -- --------------------------------------------------------
 
 --
--- 表的结构 `order`
+-- Table structure for table `order`
 --
 
 CREATE TABLE `order` (
@@ -443,7 +446,7 @@ CREATE TABLE `order` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- 转存表中的数据 `order`
+-- Dumping data for table `order`
 --
 
 INSERT INTO `order` (`id`, `productid`, `userid`, `linkman`, `price`, `status`, `orderTime`, `payMethod`, `productName`, `amount`, `productLevel`, `message`) VALUES
@@ -453,7 +456,7 @@ INSERT INTO `order` (`id`, `productid`, `userid`, `linkman`, `price`, `status`, 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `organization`
+-- Table structure for table `organization`
 --
 
 CREATE TABLE `organization` (
@@ -462,7 +465,7 @@ CREATE TABLE `organization` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- 转存表中的数据 `organization`
+-- Dumping data for table `organization`
 --
 
 INSERT INTO `organization` (`id`, `structureImage`) VALUES
@@ -471,7 +474,7 @@ INSERT INTO `organization` (`id`, `structureImage`) VALUES
 -- --------------------------------------------------------
 
 --
--- 表的结构 `product`
+-- Table structure for table `product`
 --
 
 CREATE TABLE `product` (
@@ -503,7 +506,7 @@ CREATE TABLE `product` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- 转存表中的数据 `product`
+-- Dumping data for table `product`
 --
 
 INSERT INTO `product` (`id`, `productName`, `productBigKind`, `productSmallKind`, `productLevel`, `productDescription`, `price`, `storage`, `discountPrice`, `listingDate`, `starLevel`, `watchTimes`, `availableScope`, `image1`, `image2`, `image3`, `image4`, `image5`, `unit`, `expiration`, `productFeature`, `useage`, `condition`, `operativenorm`, `sales`) VALUES
@@ -561,7 +564,7 @@ INSERT INTO `product` (`id`, `productName`, `productBigKind`, `productSmallKind`
 -- --------------------------------------------------------
 
 --
--- 表的结构 `resume`
+-- Table structure for table `resume`
 --
 
 CREATE TABLE `resume` (
@@ -577,7 +580,7 @@ CREATE TABLE `resume` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- 转存表中的数据 `resume`
+-- Dumping data for table `resume`
 --
 
 INSERT INTO `resume` (`id`, `username`, `gender`, `job`, `birthday`, `phone`, `email`, `experience`, `time`) VALUES
@@ -587,7 +590,7 @@ INSERT INTO `resume` (`id`, `username`, `gender`, `job`, `birthday`, `phone`, `e
 -- --------------------------------------------------------
 
 --
--- 表的结构 `smallKind`
+-- Table structure for table `smallKind`
 --
 
 CREATE TABLE `smallKind` (
@@ -597,7 +600,7 @@ CREATE TABLE `smallKind` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- 转存表中的数据 `smallKind`
+-- Dumping data for table `smallKind`
 --
 
 INSERT INTO `smallKind` (`id`, `kindName`, `ofBigKind`) VALUES
@@ -625,7 +628,7 @@ INSERT INTO `smallKind` (`id`, `kindName`, `ofBigKind`) VALUES
 -- --------------------------------------------------------
 
 --
--- 表的结构 `speech`
+-- Table structure for table `speech`
 --
 
 CREATE TABLE `speech` (
@@ -635,7 +638,7 @@ CREATE TABLE `speech` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- 转存表中的数据 `speech`
+-- Dumping data for table `speech`
 --
 
 INSERT INTO `speech` (`id`, `paragraph1`, `paragraph2`) VALUES
@@ -644,7 +647,7 @@ INSERT INTO `speech` (`id`, `paragraph1`, `paragraph2`) VALUES
 -- --------------------------------------------------------
 
 --
--- 表的结构 `staff`
+-- Table structure for table `staff`
 --
 
 CREATE TABLE `staff` (
@@ -656,7 +659,7 @@ CREATE TABLE `staff` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- 转存表中的数据 `staff`
+-- Dumping data for table `staff`
 --
 
 INSERT INTO `staff` (`id`, `tag`, `author`, `time`, `image`) VALUES
@@ -669,7 +672,7 @@ INSERT INTO `staff` (`id`, `tag`, `author`, `time`, `image`) VALUES
 -- --------------------------------------------------------
 
 --
--- 表的结构 `talents`
+-- Table structure for table `talents`
 --
 
 CREATE TABLE `talents` (
@@ -681,7 +684,7 @@ CREATE TABLE `talents` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- 转存表中的数据 `talents`
+-- Dumping data for table `talents`
 --
 
 INSERT INTO `talents` (`id`, `title`, `content`, `author`, `time`) VALUES
@@ -693,7 +696,7 @@ INSERT INTO `talents` (`id`, `title`, `content`, `author`, `time`) VALUES
 -- --------------------------------------------------------
 
 --
--- 表的结构 `techKinds`
+-- Table structure for table `techKinds`
 --
 
 CREATE TABLE `techKinds` (
@@ -704,7 +707,7 @@ CREATE TABLE `techKinds` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- 转存表中的数据 `techKinds`
+-- Dumping data for table `techKinds`
 --
 
 INSERT INTO `techKinds` (`id`, `moduleName`, `author`, `time`) VALUES
@@ -715,7 +718,7 @@ INSERT INTO `techKinds` (`id`, `moduleName`, `author`, `time`) VALUES
 -- --------------------------------------------------------
 
 --
--- 表的结构 `techServices`
+-- Table structure for table `techServices`
 --
 
 CREATE TABLE `techServices` (
@@ -729,7 +732,7 @@ CREATE TABLE `techServices` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- 转存表中的数据 `techServices`
+-- Dumping data for table `techServices`
 --
 
 INSERT INTO `techServices` (`id`, `moduleId`, `title`, `content`, `time`, `pageview`, `author`) VALUES
@@ -747,7 +750,7 @@ INSERT INTO `techServices` (`id`, `moduleId`, `title`, `content`, `time`, `pagev
 -- --------------------------------------------------------
 
 --
--- 表的结构 `travel`
+-- Table structure for table `travel`
 --
 
 CREATE TABLE `travel` (
@@ -759,7 +762,7 @@ CREATE TABLE `travel` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- 转存表中的数据 `travel`
+-- Dumping data for table `travel`
 --
 
 INSERT INTO `travel` (`kind`, `author`, `time`, `image`, `id`) VALUES
@@ -779,7 +782,7 @@ INSERT INTO `travel` (`kind`, `author`, `time`, `image`, `id`) VALUES
 -- --------------------------------------------------------
 
 --
--- 表的结构 `user`
+-- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
@@ -799,7 +802,7 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- 转存表中的数据 `user`
+-- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`id`, `username`, `password`, `telephone`, `email`, `address`, `token`, `token_exptime`, `status`, `regtime`, `identifier`, `time`, `memberCent`) VALUES
@@ -988,146 +991,173 @@ ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
 
 --
--- 在导出的表使用AUTO_INCREMENT
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- 使用表AUTO_INCREMENT `admin`
+-- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT COMMENT 'id', AUTO_INCREMENT=2;
+
 --
--- 使用表AUTO_INCREMENT `base`
+-- AUTO_INCREMENT for table `base`
 --
 ALTER TABLE `base`
   MODIFY `id` int(2) NOT NULL AUTO_INCREMENT COMMENT '记录编号', AUTO_INCREMENT=2;
+
 --
--- 使用表AUTO_INCREMENT `bigKind`
+-- AUTO_INCREMENT for table `bigKind`
 --
 ALTER TABLE `bigKind`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '种类id', AUTO_INCREMENT=10;
+
 --
--- 使用表AUTO_INCREMENT `comment`
+-- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '评论id', AUTO_INCREMENT=5;
+
 --
--- 使用表AUTO_INCREMENT `companyIntr`
+-- AUTO_INCREMENT for table `companyIntr`
 --
 ALTER TABLE `companyIntr`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT COMMENT 'id', AUTO_INCREMENT=2;
+
 --
--- 使用表AUTO_INCREMENT `companyPhilosophy`
+-- AUTO_INCREMENT for table `companyPhilosophy`
 --
 ALTER TABLE `companyPhilosophy`
   MODIFY `id` int(3) NOT NULL AUTO_INCREMENT COMMENT '公司理念id', AUTO_INCREMENT=5;
+
 --
--- 使用表AUTO_INCREMENT `contratcs`
+-- AUTO_INCREMENT for table `contratcs`
 --
 ALTER TABLE `contratcs`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT COMMENT '合同服务序号', AUTO_INCREMENT=3;
+
 --
--- 使用表AUTO_INCREMENT `employee`
+-- AUTO_INCREMENT for table `employee`
 --
 ALTER TABLE `employee`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT COMMENT '人才招聘信息编号', AUTO_INCREMENT=3;
+
 --
--- 使用表AUTO_INCREMENT `encouragement`
+-- AUTO_INCREMENT for table `encouragement`
 --
 ALTER TABLE `encouragement`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT COMMENT '激励保障记录编号', AUTO_INCREMENT=3;
+
 --
--- 使用表AUTO_INCREMENT `faq`
+-- AUTO_INCREMENT for table `faq`
 --
 ALTER TABLE `faq`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '问题编号', AUTO_INCREMENT=2;
+
 --
--- 使用表AUTO_INCREMENT `faqquestion`
+-- AUTO_INCREMENT for table `faqquestion`
 --
 ALTER TABLE `faqquestion`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT COMMENT 'FAQ问题编号', AUTO_INCREMENT=9;
+
 --
--- 使用表AUTO_INCREMENT `honor`
+-- AUTO_INCREMENT for table `honor`
 --
 ALTER TABLE `honor`
   MODIFY `id` int(3) NOT NULL AUTO_INCREMENT COMMENT '编号', AUTO_INCREMENT=2;
+
 --
--- 使用表AUTO_INCREMENT `manufacture`
+-- AUTO_INCREMENT for table `manufacture`
 --
 ALTER TABLE `manufacture`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT COMMENT '代加工服务编号', AUTO_INCREMENT=3;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT COMMENT '代加工服务编号', AUTO_INCREMENT=4;
+
 --
--- 使用表AUTO_INCREMENT `message`
+-- AUTO_INCREMENT for table `message`
 --
 ALTER TABLE `message`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '留言编号', AUTO_INCREMENT=4;
+
 --
--- 使用表AUTO_INCREMENT `milestone`
+-- AUTO_INCREMENT for table `milestone`
 --
 ALTER TABLE `milestone`
   MODIFY `id` int(3) NOT NULL AUTO_INCREMENT COMMENT '里程碑id', AUTO_INCREMENT=5;
+
 --
--- 使用表AUTO_INCREMENT `news`
+-- AUTO_INCREMENT for table `news`
 --
 ALTER TABLE `news`
   MODIFY `id` int(7) NOT NULL AUTO_INCREMENT COMMENT '新闻编号', AUTO_INCREMENT=11;
+
 --
--- 使用表AUTO_INCREMENT `order`
+-- AUTO_INCREMENT for table `order`
 --
 ALTER TABLE `order`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '订单id', AUTO_INCREMENT=3;
+
 --
--- 使用表AUTO_INCREMENT `organization`
+-- AUTO_INCREMENT for table `organization`
 --
 ALTER TABLE `organization`
   MODIFY `id` int(1) NOT NULL AUTO_INCREMENT COMMENT '编号', AUTO_INCREMENT=2;
+
 --
--- 使用表AUTO_INCREMENT `product`
+-- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '商品id', AUTO_INCREMENT=53;
+
 --
--- 使用表AUTO_INCREMENT `resume`
+-- AUTO_INCREMENT for table `resume`
 --
 ALTER TABLE `resume`
   MODIFY `id` int(6) NOT NULL AUTO_INCREMENT COMMENT '简历编号', AUTO_INCREMENT=3;
+
 --
--- 使用表AUTO_INCREMENT `smallKind`
+-- AUTO_INCREMENT for table `smallKind`
 --
 ALTER TABLE `smallKind`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '小种类id', AUTO_INCREMENT=21;
+
 --
--- 使用表AUTO_INCREMENT `speech`
+-- AUTO_INCREMENT for table `speech`
 --
 ALTER TABLE `speech`
   MODIFY `id` int(2) NOT NULL AUTO_INCREMENT COMMENT '领导致辞纪录id', AUTO_INCREMENT=4;
+
 --
--- 使用表AUTO_INCREMENT `staff`
+-- AUTO_INCREMENT for table `staff`
 --
 ALTER TABLE `staff`
   MODIFY `id` int(3) NOT NULL AUTO_INCREMENT COMMENT '员工培养记录编号', AUTO_INCREMENT=6;
+
 --
--- 使用表AUTO_INCREMENT `talents`
+-- AUTO_INCREMENT for table `talents`
 --
 ALTER TABLE `talents`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT COMMENT '人才理念id', AUTO_INCREMENT=5;
+
 --
--- 使用表AUTO_INCREMENT `techKinds`
+-- AUTO_INCREMENT for table `techKinds`
 --
 ALTER TABLE `techKinds`
   MODIFY `id` int(2) NOT NULL AUTO_INCREMENT COMMENT '科技服务模块编号', AUTO_INCREMENT=4;
+
 --
--- 使用表AUTO_INCREMENT `techServices`
+-- AUTO_INCREMENT for table `techServices`
 --
 ALTER TABLE `techServices`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT COMMENT '服务编号', AUTO_INCREMENT=10;
+
 --
--- 使用表AUTO_INCREMENT `travel`
+-- AUTO_INCREMENT for table `travel`
 --
 ALTER TABLE `travel`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT COMMENT '公司福利编号', AUTO_INCREMENT=13;
+
 --
--- 使用表AUTO_INCREMENT `user`
+-- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '用户id', AUTO_INCREMENT=2;

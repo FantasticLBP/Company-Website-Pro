@@ -7,26 +7,31 @@ include '../model/PdoMySQL.class.php';
 include '../model/config.php';
 include "Response.php";
 
-class ViewHelper{
+class ViewHelper
+{
 
     protected static $_instance = null;
-    private  $mysqlPdo;
-    protected function __construct(){
+    private $mysqlPdo;
+    protected function __construct()
+    {
         //disallow new instance
     }
-    protected function __clone(){
+    protected function __clone()
+    {
         //disallow clone
     }
-    public function getInstance(){
+    public function getInstance()
+    {
         if (self::$_instance === null) {
             self::$_instance = new self();
         }
         return self::$_instance;
     }
 
-    function footerGenerate(){
+    public function footerGenerate()
+    {
         $this->mysqlPdo = new PdoMySQL();
-        if($_REQUEST["kind"] == "footer"){
+        if ($_REQUEST["kind"] == "footer") {
             $allrows = $this->mysqlPdo->find("base");
             $data = $allrows[0];
             echo '<footer id="footer">
@@ -44,7 +49,7 @@ class ViewHelper{
 									<div class="logo-footer"><h2>公司介绍</h2></div>
 									<div class="row">
 										<div class="col-sm-12">
-											<p>'.$data["companyIntroduce"].'</p>
+											<p>' . $data["companyIntroduce"] . '</p>
 											<ul class="social-links circle">
 												<li class="facebook"><a target="_blank" href="http://www.bt-door.com"><i class="fa fa-hospital-o"></i></a></li>
 											</ul>
@@ -61,13 +66,13 @@ class ViewHelper{
 								<div class="footer-content">
 									<h2>联系我们</h2>
 									<ul class="list-icons">
-										<li><i class="fa fa-map-marker pr-10"></i>'.$data["address"].'</li>
-										<li><i class="fa fa-phone pr-10"></i>'.$data["administratorTel"].'(行政综合部)</li>
-										<li style="text-indent:2em;" >'.$data["enzymeTel"].'（酶事业部）</li>
-										<li style="text-indent:2em;" >'.$data["plateTel"].'（平皿事业部）</li>
-										<li><i class="fa fa-fax pr-10"></i>'.$data["fax"].'（传真） </li>
-										<li><i class="fa fa-envelope-o pr-10"></i>'.$data["adminiatratorEmail"].'（行政部)</li>
-										<li><i class="fa fa-envelope-o pr-10"></i>'.$data["MarketDepartmentEmail"].'市场部)</li>
+										<li><i class="fa fa-map-marker pr-10"></i>' . $data["address"] . '</li>
+										<li><i class="fa fa-phone pr-10"></i>' . $data["administratorTel"] . '(行政综合部)</li>
+										<li style="text-indent:2em;" >' . $data["enzymeTel"] . '（酶事业部）</li>
+										<li style="text-indent:2em;" >' . $data["plateTel"] . '（平皿事业部）</li>
+										<li><i class="fa fa-fax pr-10"></i>' . $data["fax"] . '（传真） </li>
+										<li><i class="fa fa-envelope-o pr-10"></i>' . $data["adminiatratorEmail"] . '（行政部)</li>
+										<li><i class="fa fa-envelope-o pr-10"></i>' . $data["MarketDepartmentEmail"] . '市场部)</li>
 									</ul>
 								</div>
 							</div>
@@ -80,7 +85,7 @@ class ViewHelper{
 								<div class="footer-content">
 									<h2>扫一扫</h2>
 									<div class="gallery row">
-										<img src="'.$data["wechatBarcode"].'">
+										<img src="' . $data["wechatBarcode"] . '">
 									</div>
 								</div>
 							</div>
@@ -125,7 +130,7 @@ class ViewHelper{
 				</div>
 				<!-- .subfooter end -->
 			</footer>';
-        }else{
+        } else {
             echo '<header class="header fixed clearfix">
         <div class="container">
             <div class="row">
@@ -267,7 +272,8 @@ class ViewHelper{
 
     }
 
-    public function protocolViewGenerate(){
+    public function protocolViewGenerate()
+    {
         echo '<aside class="col-md-3 col-md-offset-1">
             <div class="sidebar">
                 <div class="block clearfix">
@@ -321,8 +327,8 @@ class ViewHelper{
         </aside>';
     }
 
-
-    public function generateShopList(){
+    public function generateShopList()
+    {
         echo '<div class="masonry-grid-fitrows row grid-space-20">
        <div class="col-md-3 col-sm-6 masonry-grid-item">
          <div class="listing-item">
@@ -473,10 +479,7 @@ class ViewHelper{
      </div>';
     }
 
-
 }
-
 
 $helper = ViewHelper::getInstance();
 $helper->footerGenerate();
-?>

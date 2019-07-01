@@ -35,7 +35,7 @@ class AdminHeader
         return self::$_instance;
     }
 
-    function headerGenerate($col, $row)
+    public function headerGenerate($col, $row)
     {
         $this->mysqlPdo = new PdoMySQL();
         $allrows = $this->mysqlPdo->find("base");
@@ -66,7 +66,7 @@ class AdminHeader
 
                     <ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
                         <li>
-                            <a id="logoutButton">    
+                            <a id="logoutButton">
                                 <i class="icon-off"></i>退出
                             </a>
                          </li>
@@ -366,5 +366,3 @@ class AdminHeader
     }
 
 }
-
-?>

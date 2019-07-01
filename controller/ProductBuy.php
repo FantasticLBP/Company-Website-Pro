@@ -11,7 +11,6 @@ require_once '../model/PdoMySQL.class.php';
 require_once '../model/config.php';
 require_once 'Response.php';
 
-
 class ProductBuy
 {
     private $tableName = "order";
@@ -44,7 +43,6 @@ class ProductBuy
         // TODO: Implement __clone() method.
     }
 
-
     public function getInstance()
     {
         if (self::$_instance === null) {
@@ -53,7 +51,7 @@ class ProductBuy
         return self::$_instance;
     }
 
-    function operateService()
+    public function operateService()
     {
         self . $this->type = $_REQUEST["type"];
         self . $this->storage = $_REQUEST['storage'];
@@ -75,7 +73,6 @@ class ProductBuy
         self . $this->orderID = $_REQUEST["orderid"];
         self . $this->message = $_REQUEST["message"];
 
-
         $mysqlPdo = new PdoMySQL();
 
         if ($this->type == "buy") {
@@ -86,11 +83,11 @@ class ProductBuy
             $updateid = 0;
             foreach ($idRows as $row) {
                 if ($row["productid"] == $this->productid) {
-                    $price = $row["price"] / $row["amount"];      //单价
+                    $price = $row["price"] / $row["amount"]; //单价
                     $productCount = intval($row["amount"]);
-                    $productCount += 1;                         //数量
+                    $productCount += 1; //数量
 
-                    $price = intval($productCount * $price);            //总价
+                    $price = intval($productCount * $price); //总价
 
                     $updateid = $row["id"];
                 }
@@ -101,7 +98,6 @@ class ProductBuy
                 $buyResult = $mysqlPdo->update(["amount" => $productCount, "price" => $price], "`order`", "id={$updateid}");
                 if ($buyResult) {
                     $storage = ($this->storage > 1) ? $this->storage - 1 : 0;
-
 
                     $productResult = $mysqlPdo->update(["storage" => $storage], $this->productTable, "id=$this->productid ");
 
@@ -117,12 +113,10 @@ class ProductBuy
 
                 }
 
-
             } //完全新的订单则新增购物记录，以及减少商品的数量
             else {
                 $time = date("Y-m-d H:m");
                 $data = ["productid" => $this->productid, "userid" => $this->userid, "linkman" => $this->linkman, "price" => $this->price, "status" => "0", "orderTime" => $time, "payMethod" => "", "productName" => $this->productName, "amount" => $this->amount, "productLevel" => $this->productLevel];
-
 
                 /*
                  * 购买商品2步骤：1、订单表增加一个购买记录
@@ -134,7 +128,6 @@ class ProductBuy
                 if ($Res) {
                     //更新商品数量
                     $storage = ($this->storage > 1) ? $this->storage - 1 : 0;
-
 
                     $productResult = $mysqlPdo->update(["storage" => $storage], $this->productTable, "id=$this->productid ");
 
@@ -154,13 +147,12 @@ class ProductBuy
                 }
             }
 
-
         } else if ($this->type == "commit") {
-            $res = $mysqlPdo->update(["message" => $this->message,"status"=>1], "`order`", "id in ({$this->orderID})");
-            if ($res){
+            $res = $mysqlPdo->update(["message" => $this->message, "status" => 1], "`order`", "id in ({$this->orderID})");
+            if ($res) {
                 Response::show(200, "提交成功");
 
-            }else{
+            } else {
                 Response::show(201, "提交失败");
 
             }
@@ -187,20 +179,14 @@ class ProductBuy
                     }
                 }
 
-
             } else {
                 Response::show(202, "系统异常");
             }
 
         }
 
-
     }
 }
 
 $buyService = ProductBuy::getInstance();
 $buyService->operateService();
-
-
-?>
-

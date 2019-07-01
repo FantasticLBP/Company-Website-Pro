@@ -5,4 +5,4 @@
  * Date: 2017/7/6
  * Time: 上午12:34
  */
-$emailPassword='ios1995220';
+$emailPassword = 'ios1995220';

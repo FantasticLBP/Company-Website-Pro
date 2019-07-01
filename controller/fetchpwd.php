@@ -8,16 +8,13 @@ require_once 'Response.php';
 //表名称
 $table = "admin";
 //1、拿到请求的账号
-$username  = $_REQUEST["username"];
-
+$username = $_REQUEST["username"];
 
 $pdoOperator = new PdoMySQL();
-$passwordRows = $pdoOperator->find($table,"username='".$username."'");
+$passwordRows = $pdoOperator->find($table, "username='" . $username . "'");
 $row = $passwordRows[0];
-if(count($passwordRows) >0){
-    Response::show("200","密码找回成功",base64_decode($row["password"]));
-}else{
-    Response::show("200","该账号未注册","");
+if (count($passwordRows) > 0) {
+    Response::show("200", "密码找回成功", base64_decode($row["password"]));
+} else {
+    Response::show("200", "该账号未注册", "");
 }
-
-?>

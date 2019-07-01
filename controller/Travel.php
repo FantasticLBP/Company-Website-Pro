@@ -13,30 +13,24 @@ require_once 'Response.php';
 require_once '../Utils/fileHandler/upload.class.php';
 require_once '../Utils/fileHandler/upload.func.php';
 
-
-
 class TravelService
 {
     private $tableName = "travel";
     private $type = "";
-    private  $travelId = "";
-    private  $kind = "";
-
-
-
+    private $travelId = "";
+    private $kind = "";
 
     protected static $_instance = null;
 
-    protected function  __construct()
+    protected function __construct()
     {
 
     }
 
-    protected function  __clone()
+    protected function __clone()
     {
         // TODO: Implement __clone() method.
     }
-
 
     public function getInstance()
     {
@@ -46,19 +40,17 @@ class TravelService
         return self::$_instance;
     }
 
-    function operateService()
+    public function operateService()
     {
-        self.$this->type = $_REQUEST["type"];
-        self.$this->travelId = $_REQUEST["travelId"];
-        self.$this->kind = $_REQUEST["kind"];
-
-
+        self . $this->type = $_REQUEST["type"];
+        self . $this->travelId = $_REQUEST["travelId"];
+        self . $this->kind = $_REQUEST["kind"];
 
         $mysqlPdo = new PdoMySQL();
-        if($this->type === "select"){
+        if ($this->type === "select") {
             $allrows = $mysqlPdo->find($this->tableName);
             Response::show(200, '旅游福利信息返回成功', $allrows, 'json');
-        }else if ($this->type === "delete") {
+        } else if ($this->type === "delete") {
             $oldTravelImage = $mysqlPdo->find($this->tableName, "id='$this->travelId'");
 
             $oldTravelImage = $oldTravelImage[0];
@@ -69,13 +61,13 @@ class TravelService
                 $uploader = new upload('myAvator', '../style/images');
                 $uploader->deleteUploadedFile("../" . $oldTravelImage["image"]);
             }
-            $deleteRes = $mysqlPdo->delete($this->tableName,"id=$this->travelId ");
+            $deleteRes = $mysqlPdo->delete($this->tableName, "id=$this->travelId ");
             if ($deleteRes || $deleteRes == 0) {
-                Response::show(200,"删除成功","","json");
-            }else{
-                Response::show(201,"删除失败","","json");
+                Response::show(200, "删除成功", "", "json");
+            } else {
+                Response::show(201, "删除失败", "", "json");
             }
-        }else{
+        } else {
             foreach ($_FILES as $fileInfo) {
                 if ($fileInfo["name"] != "") {
                     $files[] = uploadFile($fileInfo, "../style/images");
@@ -83,25 +75,21 @@ class TravelService
             }
             $time = date("Y年m月d日");
 
-            $data = ["kind"=>$this->kind,"author"=>"admin","time"=>$time,"image" => substr($files[0], 3)];
+            $data = ["kind" => $this->kind, "author" => "admin", "time" => $time, "image" => substr($files[0], 3)];
             $Res = $mysqlPdo->add($data, $this->tableName);
 
             $lastInsertId = $mysqlPdo->getLastInsertId();
 
-            if ($Res){
+            if ($Res) {
                 echo '<script>window.location.href = "../admin/newTravel.php?m=as"</script>';
             } else {
                 echo '<script>window.location.href = "../admin/newTravel.php?m=af"</script>';
             }
 
-
         }
-
 
     }
 }
 
 $travelService = TravelService::getInstance();
 $travelService->operateService();
-?>
-

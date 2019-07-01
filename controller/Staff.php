@@ -13,30 +13,24 @@ require_once 'Response.php';
 require_once '../Utils/fileHandler/upload.class.php';
 require_once '../Utils/fileHandler/upload.func.php';
 
-
-
 class BelifService
 {
     private $tableName = "staff";
     private $type = "";
-    private  $staffId = "";
-    private  $staffTag = "";
-
-
-
+    private $staffId = "";
+    private $staffTag = "";
 
     protected static $_instance = null;
 
-    protected function  __construct()
+    protected function __construct()
     {
 
     }
 
-    protected function  __clone()
+    protected function __clone()
     {
         // TODO: Implement __clone() method.
     }
-
 
     public function getInstance()
     {
@@ -46,19 +40,17 @@ class BelifService
         return self::$_instance;
     }
 
-    function operateService()
+    public function operateService()
     {
-        self.$this->type = $_REQUEST["type"];
-        self.$this->staffId = $_REQUEST["staffId"];
-        self.$this->staffTag = $_REQUEST["staffTag"];
-
-
+        self . $this->type = $_REQUEST["type"];
+        self . $this->staffId = $_REQUEST["staffId"];
+        self . $this->staffTag = $_REQUEST["staffTag"];
 
         $mysqlPdo = new PdoMySQL();
-        if($this->type === "select"){
+        if ($this->type === "select") {
             $allrows = $mysqlPdo->find($this->tableName);
             Response::show(200, '员工培养信息返回成功', $allrows, 'json');
-        }else if ($this->type === "delete") {
+        } else if ($this->type === "delete") {
             $oldStaffImage = $mysqlPdo->find($this->tableName, "id='$this->staffId'");
 
             $oldStaffImage = $oldStaffImage[0];
@@ -69,13 +61,13 @@ class BelifService
                 $uploader = new upload('myAvator', '../style/images');
                 $uploader->deleteUploadedFile("../" . $oldStaffImage["image"]);
             }
-            $deleteRes = $mysqlPdo->delete($this->tableName,"id=$this->staffId ");
+            $deleteRes = $mysqlPdo->delete($this->tableName, "id=$this->staffId ");
             if ($deleteRes || $deleteRes == 0) {
-                Response::show(200,"删除成功","","json");
-            }else{
-                Response::show(201,"删除失败","","json");
+                Response::show(200, "删除成功", "", "json");
+            } else {
+                Response::show(201, "删除失败", "", "json");
             }
-        }else{
+        } else {
             foreach ($_FILES as $fileInfo) {
                 if ($fileInfo["name"] != "") {
                     $files[] = uploadFile($fileInfo, "../style/images");
@@ -83,25 +75,20 @@ class BelifService
             }
             $time = date("Y年m月d日");
 
-            $data = ["tag"=>$this->staffTag,"author"=>"admin","time"=>$time,"image" => substr($files[0], 3)];
+            $data = ["tag" => $this->staffTag, "author" => "admin", "time" => $time, "image" => substr($files[0], 3)];
             $Res = $mysqlPdo->add($data, $this->tableName);
 
             $lastInsertId = $mysqlPdo->getLastInsertId();
-            if ($Res){
+            if ($Res) {
                 echo '<script>window.location.href = "../admin/newStaff.php?m=as"</script>';
             } else {
                 echo '<script>window.location.href = "../admin/newStaff.php?m=af"</script>';
             }
 
-
-
         }
-
 
     }
 }
 
 $beliefService = BelifService::getInstance();
 $beliefService->operateService();
-?>
-

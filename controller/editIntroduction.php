@@ -14,33 +14,31 @@ require_once 'Response.php';
 require_once '../Utils/fileHandler/upload.class.php';
 require_once '../Utils/fileHandler/upload.func.php';
 
-
 class EditCompanyIntr
 {
     private $tableName = "companyIntr";
     private $editId = "";
     private $type = "";
 
-    private $description = "";        //公司介绍第一段（共2段）
-    private $image1 = "";              //公司图片1
-    private $image2 = "";              //公司图片2
-    private $image3 = "";              //公司图片3
-    private $image4 = "";              //公司图片4
+    private $description = ""; //公司介绍第一段（共2段）
+    private $image1 = ""; //公司图片1
+    private $image2 = ""; //公司图片2
+    private $image3 = ""; //公司图片3
+    private $image4 = ""; //公司图片4
 
     protected static $_instance = null;
 
-    protected function  __construct()
+    protected function __construct()
     {
 
     }
 
-    protected function  __clone()
+    protected function __clone()
     {
         // TODO: Implement __clone() method.
     }
 
-
-    public function  getInstance()
+    public function getInstance()
     {
         if (self::$_instance === null) {
             self::$_instance = new self();
@@ -48,7 +46,7 @@ class EditCompanyIntr
         return self::$_instance;
     }
 
-    function editIntr()
+    public function editIntr()
     {
         self . $this->editId = $_REQUEST["editId"];
         self . $this->type = $_REQUEST["type"];
@@ -124,7 +122,7 @@ class EditCompanyIntr
                     $files[] = uploadFile($fileInfo, "../style/images");
                 }
             }
-            $data = ["description" => $this->description,  "image1" => substr($files[0], 3), "image2" => substr($files[1], 3), "image3" => substr($files[2], 3), "image4" => substr($files[3], 3)];
+            $data = ["description" => $this->description, "image1" => substr($files[0], 3), "image2" => substr($files[1], 3), "image3" => substr($files[2], 3), "image4" => substr($files[3], 3)];
             $productRes = $mysqlPdo->add($data, $this->tableName);
             $lastInsertId = $mysqlPdo->getLastInsertId();
             if ($productRes) {
@@ -141,4 +139,3 @@ class EditCompanyIntr
 
 $editor = EditCompanyIntr::getInstance();
 $editor->editIntr();
-?>

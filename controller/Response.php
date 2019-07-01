@@ -1,6 +1,7 @@
 <?php
 
-class Response {
+class Response
+{
     const JSON = "json";
     /**
      * 按综合方式输出通信数据
@@ -10,8 +11,9 @@ class Response {
      * @param string $type 数据类型
      * return string
      */
-    public static function show($code, $message = '', $data = array(), $type = self::JSON) {
-        if(!is_numeric($code)) {
+    public static function show($code, $message = '', $data = array(), $type = self::JSON)
+    {
+        if (!is_numeric($code)) {
             return '';
         }
         //$type = isset($_GET['format']) ? $_GET['format'] : self::JSON;
@@ -21,12 +23,12 @@ class Response {
             'data' => $data,
         );
 
-        if($type == 'json') {
+        if ($type == 'json') {
             self::json($code, $message, $data);
             exit;
-        } elseif($type == 'array') {
+        } elseif ($type == 'array') {
             var_dump($result);
-        } elseif($type == 'xml') {
+        } elseif ($type == 'xml') {
             self::xmlEncode($code, $message, $data);
             exit;
         } else {
@@ -40,16 +42,17 @@ class Response {
      * @param array $data 数据
      * return string
      */
-    public static function json($code, $message = '', $data = array()) {
+    public static function json($code, $message = '', $data = array())
+    {
 
-        if(!is_numeric($code)) {
+        if (!is_numeric($code)) {
             return '';
         }
 
         $result = array(
             'code' => $code,
             'message' => $message,
-            'data' => $data
+            'data' => $data,
         );
 
         echo json_encode($result);
@@ -63,8 +66,9 @@ class Response {
      * @param array $data 数据
      * return string
      */
-    public static function xmlEncode($code, $message, $data = array()) {
-        if(!is_numeric($code)) {
+    public static function xmlEncode($code, $message, $data = array())
+    {
+        if (!is_numeric($code)) {
             return '';
         }
 
@@ -84,11 +88,12 @@ class Response {
         echo $xml;
     }
 
-    public static function xmlToEncode($data) {
+    public static function xmlToEncode($data)
+    {
 
         $xml = $attr = "";
-        foreach($data as $key => $value) {
-            if(is_numeric($key)) {
+        foreach ($data as $key => $value) {
+            if (is_numeric($key)) {
                 $attr = " id='{$key}'";
                 $key = "item";
             }
@@ -99,4 +104,3 @@ class Response {
         return $xml;
     }
 }
-?>
