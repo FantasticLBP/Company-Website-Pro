@@ -1,0 +1,30 @@
+{
+  "name": "Company-Website-Pro",
+  "version": "1.0.0",
+  "description": "[![](https://img.shields.io/badge/release-2019--12--28-blueviolet)](https://github.com/FantasticLBP/Company-Website) [![Build status](https://img.shields.io/badge/building-passing-brightgreen.svg)](https://github.com/FantasticLBP/Company-Website) [![Gitter](https://img.shields.io/badge/chat-weibo-orange.svg)](https://weibo.com/3194053975/profile?rightmod=1&wvr=6&mod=personinfo)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FantasticLBP/Company-Website-Pro.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FantasticLBP/Company-Website-Pro/issues"
+  },
+  "homepage": "https://github.com/FantasticLBP/Company-Website-Pro#readme",
+  "devDependencies": {
+    "@commitlint/cli": "^9.1.1",
+    "@commitlint/config-conventional": "^9.1.1",
+    "husky": "^4.2.5"
+  },
+  "husky": {
+    "hooks": {
+        "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+}
+}
