@@ -55,7 +55,7 @@ class BelifService
             Response::show(200, '人才理念信息返回成功', $allrows, 'json');
         } else if ($this->type === "delete") {
 
-            $deleteRes = $mysqlPdo->delete($this->tableName, "id=$this->belefId ");
+            $deleteRes = $mysqlPdo->delete($this->tableName, "id='$this->belefId' ");
             if ($deleteRes || $deleteRes == 0) {
                 Response::show(200, "删除成功", "", "json");
             } else {
