@@ -6,14 +6,6 @@ include_once 'upload.func.php';
 require_once '../model/PdoMySQL.class.php';
 require_once '../model/config.php';
 
-//对输入的转义
-if (!function_exists(get_magic_quotes_gpc) || !get_magic_quotes_gpc()) {
-    foreach (array('_COOKIE', '_POST', '_GET') as $v) {
-        foreach ($$v as $kk => $vv) {
-            $kk{0} != '_' && $$v[$kk] = addslashes($vv);
-        }
-    }
-}
 
 $productName = $_REQUEST["productName"];
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
